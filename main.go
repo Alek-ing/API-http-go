@@ -6,20 +6,26 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(resp, "Welcome to new server")
-	})
+	http.HandleFunc("/es", handlerSpanish)
 
-	http.HandleFunc("/2", func(resp http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(resp, "Welcome to new server2")
-	})
+	http.HandleFunc("/en", handlerEnglish)
 
-	http.HandleFunc("/3", func(resp http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(resp, "Welcome to new server3")
-	})
+	http.HandleFunc("/pt", handlerPortuguese)
 
 	address := ":8080"
 	fmt.Println("server running ", address)
 	http.ListenAndServe(address, nil)
 
+}
+
+func handlerSpanish(resp http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(resp, "hola")
+}
+
+func handlerEnglish(resp http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(resp, "hello")
+}
+
+func handlerPortuguese(resp http.ResponseWriter, req *http.Request) {
+	fmt.Fprintf(resp, "ola")
 }
